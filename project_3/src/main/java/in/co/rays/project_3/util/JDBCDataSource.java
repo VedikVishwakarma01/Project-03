@@ -64,7 +64,11 @@ public class JDBCDataSource {
      * @return connection
      */
     public static Connection getConnection() throws Exception {
-            
+        
+        
+        
+        
+        
         return getInstance().cpds.getConnection();
     }
 

@@ -1,4 +1,4 @@
- package in.co.rays.project_3.model;
+package in.co.rays.project_3.model;
 
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -90,8 +90,7 @@ public final class ModelFactory {
 	public UserModelInt getUserModel() {
 
 		UserModelInt userModel = (UserModelInt) modelCache.get("userModel");
-		
-		if (userModel == null) { 
+		if (userModel == null) {
 			if ("Hibernate".equals(DATABASE)) {
 				userModel = new UserModelHibImp();
 			}

@@ -48,7 +48,7 @@ public class UserRegistrationCtl extends BaseCtl {
 		if (DataValidator.isNull(request.getParameter("lastName"))) {
 			request.setAttribute("lastName", PropertyReader.getValue("error.require", "last Name"));
 			pass = false;
-		} else if (!DataValidator.isName(request.getParameter("lastName"))) {
+		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
 			request.setAttribute("lastName", "Last name contain Alphabets only");
 			pass = false;
 
@@ -128,14 +128,11 @@ public class UserRegistrationCtl extends BaseCtl {
 		dto.setConfirmPassword(DataUtility.getString(request.getParameter("confirmPassword")));
 
 		dto.setGender(DataUtility.getString(request.getParameter("gender")));
-
 		dto.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
 
 		dto.setDob(DataUtility.getDate(request.getParameter("dob")));
 
-		return populateBean(dto, request);
-
-//		return dto;
+		return dto;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -77,7 +77,7 @@ public class UserCtl extends BaseCtl {
 		if (DataValidator.isNull(request.getParameter("lastName"))) {
 			request.setAttribute("lastName", PropertyReader.getValue("error.require", "last Name"));
 			pass = false;
-		} else if (!DataValidator.isName(request.getParameter("lastName"))) {
+		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
 			request.setAttribute("lastName", "please enter correct Name");
 			pass = false;
 
@@ -137,7 +137,6 @@ public class UserCtl extends BaseCtl {
 			request.setAttribute("confirmPassword", "Confirm  Password  should  be matched.");
 			pass = false;
 		}
-		System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 		System.out.println(request.getParameter("dob"));
 		System.out.println("validate end " + pass + "................" + request.getParameter("id"));
 		System.out.println(request.getParameter("password"));
@@ -176,7 +175,6 @@ public class UserCtl extends BaseCtl {
 
 		System.out.println(request.getParameter("dob") + "......." + dto.getDob());
 		log.debug("UserRegistrationCtl Method populatedto Ended");
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
 		return dto;
 
@@ -212,14 +210,10 @@ public class UserCtl extends BaseCtl {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		
-		System.out.println("dfgvjhbklmjhjgdfdjjklhjkgfxdzxcjhkhgjfzdxc");
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		// get model
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
-		
-		System.out.println("dfgvjhbklmjhjgdfdjjklhjkgfxdzxcjhkhgjfzdxc");
 
 		long id = DataUtility.getLong(request.getParameter("id"));
 

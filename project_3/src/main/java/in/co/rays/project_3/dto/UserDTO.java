@@ -10,10 +10,8 @@ import java.util.Date;
  */
 
 public class UserDTO extends BaseDTO {
-	
 	public static final String ACTIVE = "Active";
 	public static final String INACTIVE = "Inactive";
-	
 	private String firstName;
 	private String lastName;
 	private String login;

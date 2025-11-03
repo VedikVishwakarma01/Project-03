@@ -119,14 +119,10 @@ public abstract class BaseCtl extends HttpServlet{
     protected void service(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 
-    	System.out.println("op");
-    	
         // Load the preloaded data required to display at HTML form
         preload(request);
 
         String op = DataUtility.getString(request.getParameter("operation"));
-        
-        
 
         // Check if operation is not DELETE, VIEW, CANCEL, RESET and NULL then
         // perform input data validation

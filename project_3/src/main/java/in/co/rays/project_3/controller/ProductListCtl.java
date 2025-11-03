@@ -58,7 +58,7 @@ public class ProductListCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("ProjectListCtl doGet Start");
+		log.debug("UserListCtl doGet Start");
 		List list;
 		List next;
 
@@ -95,7 +95,7 @@ public class ProductListCtl extends BaseCtl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.debug("ProjectListCtl doPOst End");
+		log.debug("UserListCtl doPOst End");
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class ProductListCtl extends BaseCtl {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("ProjectListCtl doPost Start");
+		log.debug("UserListCtl doPost Start");
 
 		List list = null;
 		List next = null;
@@ -161,7 +161,7 @@ public class ProductListCtl extends BaseCtl {
 				}
 			}
 			if (OP_BACK.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.PRODUCT_LIST_CTL, request, response);
+				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
 				return;
 			}
 			dto = (ProductDTO) populateDTO(request);
@@ -198,7 +198,7 @@ public class ProductListCtl extends BaseCtl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.debug("ProjectListCtl doGet End");
+		log.debug("UserListCtl doGet End");
 	}
 
 	@Override

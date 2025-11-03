@@ -58,9 +58,9 @@ i.css {
 
 							<%
 							  long id=DataUtility.getLong(request.getParameter("id"));
-							System.out.println("dyo  :"+dto.getFirstName());
 							
-								if (dto.getFirstName() != null && dto.getId() > 0) {
+							
+								if (dto.getFirstName()!=null) {
 							%>
 							<h3 class="text-center default-text text-primary">Update User</h3>
 							<%
@@ -240,7 +240,7 @@ i.css {
     </div>	
 	<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("dob", request)%></font></br>
 					<%
-							if (dto.getFirstName() != null && dto.getId() > 0) {
+							if (dto.getFirstName()!=null) {
 							%>
 
 							<div class="text-center">

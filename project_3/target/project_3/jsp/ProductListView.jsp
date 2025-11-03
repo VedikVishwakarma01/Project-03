@@ -65,7 +65,7 @@
 			%>
 			<center>
 				<h1 class="text-dark font-weight-bold pt-3">
-					<u>Product List</u>
+					<u>User List</u>
 				</h1>
 			</center>
 			<div class="row">
@@ -207,7 +207,7 @@
 				if (list.size() == 0) {
 			%>
 			<center>
-				<h1 style="font-size: 40px; color: #162390;">Product List</h1>
+				<h1 style="font-size: 40px; color: #162390;">User List</h1>
 			</center>
 			</br>
 			<div class="row">
