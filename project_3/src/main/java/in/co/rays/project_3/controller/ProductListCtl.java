@@ -161,7 +161,7 @@ public class ProductListCtl extends BaseCtl {
 				}
 			}
 			if (OP_BACK.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
+				ServletUtility.redirect(ORSView.PRODUCT_LIST_CTL, request, response);
 				return;
 			}
 			dto = (ProductDTO) populateDTO(request);

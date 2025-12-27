@@ -138,7 +138,6 @@ public class UserListCtl extends BaseCtl {
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
-// get the selected checkbox ids array for delete list
 		String[] ids = request.getParameterValues("ids");
 
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
@@ -186,7 +185,6 @@ public class UserListCtl extends BaseCtl {
 			ServletUtility.setDto(dto, request);
 			next = model.search(dto, pageNo + 1, pageSize);
 
-			ServletUtility.setList(list, request);
 			ServletUtility.setList(list, request);
 
 			if (list == null || list.size() == 0) {

@@ -207,7 +207,23 @@
 			<center>
 				<h1 class="text-primary font-weight-bold pt-3">Student List</h1>
 			</center>
-			</br> </br>
+			</br><div class="row">
+				<div class="col-md-4"></div>
+
+				<%
+					if (!ServletUtility.getErrorMessage(request).equals("")) {
+				%>
+				<div class=" col-md-4 alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4>
+						<font color="red"> <%=ServletUtility.getErrorMessage(request)%></font>
+					</h4>
+				</div>
+				<%
+					}
+				%>
+				<div class="col-md-4"></div>
+			</div> </br>
 			<div style="padding-left: 48%;">
 				<input type="submit" name="operation" class="btn btn-primary btn-md"
 					style="font-size: 17px" value="<%=StudentListCtl.OP_BACK%>">

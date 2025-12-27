@@ -64,8 +64,8 @@
 				if (list.size() != 0) {
 			%>
 			<center>
-				<h1 class="text-dark font-weight-bold pt-3">
-					<u>User List</u>
+				<h1 class="text-dark  text-center font-weight-bold pt-3">
+					<u>Product List</u>
 				</h1>
 			</center>
 			<div class="row">
@@ -116,9 +116,9 @@
 				<div class="col-sm-3">
 					<%
 						HashMap map = new HashMap();
-							map.put("High", "High");
-							map.put("Medium", "Medium");
-							map.put("Low", "Low");
+							map.put("Fridge", "Fridge");
+							map.put("A.C", "A.C");
+							map.put("T.V", "T.V");
 							String htmlList = HTMLUtility.getList("productCategory", dto.getProductCategory(), map);
 					%>
 					<%=htmlList%>

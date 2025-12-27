@@ -58,7 +58,7 @@ i.css {
 								Your Password?</h3>
 							<p class="text-center default-text text-info"
 								style="font-size: 11px;">Submit your Email Address and we
-								will Send You password</p>
+								will Send You password</p> 
 
 							<H4 align="center">
 								<%
