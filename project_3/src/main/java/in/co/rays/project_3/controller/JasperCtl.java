@@ -44,7 +44,7 @@ public class JasperCtl extends BaseCtl {
 			ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
 
 			/* Compilation of jrxml file */
-			JasperReport jasperReport = JasperCompileManager.compileReport(rb.getString("jasperctl"));
+			JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\HP\\JaspersoftWorkspace\\MyReports\\vedik.jrxml");
 
 			HttpSession session = request.getSession(true);
 
