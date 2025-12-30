@@ -1,21 +1,24 @@
+
 version: '3'
 services:
   mysql:
     image: mysql:8.0
-    container_name: orsproject3-mysql
+    container_name: project_3-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: project_3
     ports:
       - "3308:3306"
     networks:
-      - mynetwork
+      - mynetwork 
     volumes:
       - ./mysql-data:/var/lib/mysql
+
   webapp:
     build:
       context: .
-    container_name: orsproject3-webapp
+      dockerfile: Dockerfile
+    container_name: project_3-webapp
     ports:
       - "8080:8080"
     networks:
@@ -24,6 +27,7 @@ services:
       - mysql
     environment:
       - DATABASE_URL=jdbc:mysql://mysql:3306/project_3
+      jasperctl=/home/vedik.jrxml
 networks:
   mynetwork:
     driver: bridge

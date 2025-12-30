@@ -58,7 +58,7 @@ background-image: url('<%=ORSView.APP_CONTEXT%>/img/user1.jpg');
 							<%
 								long id = DataUtility.getLong(request.getParameter("id"));
 
-								if (dto.getId()!=null) {
+								if (dto.getId()!=null && dto.getId()>0) {
 							%>
 							<h3 class="text-center default-text text-primary">Update Student</h3>
 							<%

@@ -6,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .p1 {
-	padding-top: 1px;
+	padding-top: 150px;
 }
 
 body {
-	background-image: url('img/vedik.jpg');
-	background-size: cover;
+	background-image: url('img/wback.jpg');
+	background-size:cover;
 	background-repeat: no-repeat;
 }
 </style>
