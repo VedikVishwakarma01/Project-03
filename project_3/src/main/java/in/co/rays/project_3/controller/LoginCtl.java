@@ -132,6 +132,9 @@ public class LoginCtl extends BaseCtl {
 			UserDTO dto = (UserDTO) populateDTO(request);
 			try {
 				dto = userModel.authenticate(dto.getLogin(), dto.getPassword());
+				
+				System.out.println("hjvhkhjvwhhsu"+dto);
+				
 				if (dto != null) {
 					session.setAttribute("user", dto);
 					long roleId = dto.getRoleId();

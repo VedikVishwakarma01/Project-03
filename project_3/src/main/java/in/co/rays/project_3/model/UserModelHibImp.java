@@ -255,9 +255,11 @@ public class UserModelHibImp implements UserModelInt {
 		Query q = session.createQuery("from UserDTO where login=? and password=?");
 		q.setString(0, login);
 		q.setString(1, password);
+		System.out.println("cvayukdfahfdUG" + password);
 		List list = q.list();
 		if (list.size() > 0) {
 			dto = (UserDTO) list.get(0);
+			System.out.println("vhksvhsgugu" + dto);
 		} else {
 			dto = null;
 

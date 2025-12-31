@@ -33,6 +33,10 @@ public interface ORSView {
 	public String STUDENT_VIEW = PAGE_FOLDER + "/StudentView.jsp";
 
 	public String STUDENT_LIST_VIEW = PAGE_FOLDER + "/StudentListView.jsp";
+	
+	public String EMPLOYEE_VIEW = PAGE_FOLDER + "/EmployeeView.jsp";
+
+	public String EMPLOYEE_LIST_VIEW = PAGE_FOLDER + "/EmployeeListView.jsp";
 
 	public String ROLE_VIEW = PAGE_FOLDER + "/RoleView.jsp";
 
@@ -99,6 +103,10 @@ public interface ORSView {
 	public String LOGIN_CTL = APP_CONTEXT + "/LoginCtl";
 
 	public String WELCOME_CTL = APP_CONTEXT + "/WelcomeCtl";
+	
+	public String EMPLOYEE_CTL = APP_CONTEXT + "/ctl/EmployeeCtl";
+
+	public String EMPLOYEE_LIST_CTL = APP_CONTEXT + "/ctl/EmployeeListCtl";
 
 	public String FACULTY_CTL = APP_CONTEXT + "/ctl/FacultyCtl";
 
