@@ -1,0 +1,115 @@
+pipeline {
+    agent any
+
+    environment {
+        JAVA_HOME = "C:\\Program Files\\Java\\jdk-11.0.15.1"
+        PATH = "${JAVA_HOME}\\bin;${PATH}"
+        TOMCAT_HOME = 'D:\\rays software\\servers\\apache-tomcat-9.0.104-windows-x64\\apache-tomcat-9.0.104'
+        TOMCAT_WEBAPPS_PATH = "${TOMCAT_HOME}\\webapps"
+        TOMCAT_SERVICE_NAME = 'Tomcat9'  // Change if your service name is different
+        MAVEN_HOME = "C:\\ProgramData\\Jenkins\\.jenkins\\tools\\hudson.tasks.Maven_MavenInstallation\\maven"
+    }
+
+    stages {
+
+        stage('Cleanup Workspace') {
+            steps {
+                echo "🧹 Cleaning previous workspace..."
+                deleteDir()
+            }
+        }
+
+        stage('Clone Repository') {
+            steps {
+                echo "📦 Cloning repository from GitHub..."
+                git credentialsId: 'github-credentials', url: 'https://github.com/VedikVishwakarma01/Project-03.git', branch: 'main'
+            }
+        }
+
+        stage('Build WAR File') {
+            steps {
+                echo "⚙️ Building WAR file with Maven..."
+                bat "\"%MAVEN_HOME%\\bin\\mvn\" clean package -DskipTests -Dmaven.repo.local=.m2/repository -f project_3/pom.xml"
+            }
+        }
+
+        stage('Copy WAR to Tomcat') {
+            steps {
+                script {
+                    def warFile = "project_3\\target\\project_3.war"
+                    def destination = "${TOMCAT_WEBAPPS_PATH}\\project_3.war"
+
+                    echo "🧼 Removing old deployment..."
+                    bat "rmdir /S /Q \"${TOMCAT_WEBAPPS_PATH}\\project_3\" || exit 0"
+                    bat "del /Q \"${destination}\" || exit 0"
+
+                    echo "📤 Copying new WAR file to Tomcat webapps..."
+                    bat "copy /Y \"${warFile}\" \"${destination}\""
+                }
+            }
+        }
+
+        stage('Ensure Tomcat Service Exists') {
+            steps {
+                script {
+                    echo "🔍 Checking if Tomcat service exists..."
+                    def serviceExists = bat(script: "sc query ${TOMCAT_SERVICE_NAME}", returnStatus: true) == 0
+                    if (!serviceExists) {
+                        echo "⚙️ Tomcat service not found. Installing..."
+                        bat "cd /d ${TOMCAT_HOME}\\bin && service.bat install"
+                    } else {
+                        echo "✅ Tomcat service already installed."
+                    }
+                }
+            }
+        }
+
+        stage('Restart Tomcat') {
+            steps {
+                script {
+                    echo "🔄 Checking Tomcat status..."
+                    def tomcatRunning = bat(script: "sc query ${TOMCAT_SERVICE_NAME} | find \"RUNNING\" >nul", returnStatus: true) == 0
+
+                    if (tomcatRunning) {
+                        echo "⏹ Tomcat is running — restarting service..."
+                        bat "sc stop ${TOMCAT_SERVICE_NAME} || exit /b 0"
+                        sleep time: 10, unit: 'SECONDS'
+                        bat "sc start ${TOMCAT_SERVICE_NAME} || exit /b 0"
+                    } else {
+                        echo "▶️ Tomcat is not running — starting service..."
+                        bat "sc start ${TOMCAT_SERVICE_NAME} || exit /b 0"
+                    }
+                }
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sleep time: 10, unit: 'SECONDS'  // wait for Tomcat to deploy WAR
+                powershell '''
+                Write-Host "🌐 Verifying deployment at http://localhost:8080/project_3 ..."
+                try {
+                    $response = Invoke-WebRequest -Uri "http://localhost:8080/project_3" -UseBasicParsing -TimeoutSec 15
+                    if ($response.StatusCode -eq 200) {
+                        Write-Host "✅ Application deployed successfully."
+                        exit 0
+                    } else {
+                        Write-Host ("⚠️ Deployment responded with status code: " + $response.StatusCode)
+                        exit 1
+                    }
+                } catch {
+                    Write-Host "❌ Tomcat or application not reachable: $($_.Exception.Message)"
+                    exit 1
+                }
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            echo '🧹 Cleaning workspace after build...'
+            deleteDir()
+        }
+    }
+}
